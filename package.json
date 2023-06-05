@@ -12,7 +12,7 @@
     "db:migrate": "sequelize-cli db:migrate",
     "db:migrate:undo:all": "sequelize-cli db:migrate:undo:all",
     "db:seed": "sequelize-cli db:seed:undo:all && sequelize db:seed:all",
-    "db:reset": "yarn db:drop && yarn db:create && yarn db:migrate && yarn db:seed"
+    "db:reset": "sequelize-cli db:drop && yarn db:create"
     
   },
   "jest": {
