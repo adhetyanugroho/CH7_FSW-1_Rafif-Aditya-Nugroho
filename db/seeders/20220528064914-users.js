@@ -33,7 +33,7 @@ module.exports = {
       name,
       email: `${name.toLowerCase()}@binar.co.id`,
       encryptedPassword,
-      roleId: name.toLowerCase() === 'admin' ? roleAdmin.id : roleCustomer.id,
+      roleId: name.toLowerCase() === 'Jayabaya' ? roleAdmin.id : roleCustomer.id,
       createdAt: timestamp,
       updatedAt: timestamp,
     }));
