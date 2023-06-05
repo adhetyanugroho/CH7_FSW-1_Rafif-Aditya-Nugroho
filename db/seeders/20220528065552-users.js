@@ -5,7 +5,7 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const { Role } = require('../../app/models');
 
-const names = ['Johnny', 'Fikri', 'Brian', 'Ranggawarsita', 'Jayabaya', 'Admin'];
+const names = ['Johnny', 'Fikri', 'Brian', 'Ranggawarsita', 'Jayabaya', 'Arief'];
 
 module.exports = {
     async up(queryInterface, Sequelize) {
@@ -28,7 +28,7 @@ module.exports = {
             name,
             email: `${name.toLowerCase()}@binar.co.id`,
             encryptedPassword,
-            roleId: name.toLowerCase() === 'admin' ? roleAdmin.id : roleCustomer.id,
+            roleId: name.toLowerCase() === 'arief' ? roleAdmin.id : roleCustomer.id,
             createdAt: timestamp,
             updatedAt: timestamp,
         }));
