@@ -48,50 +48,50 @@ describe('Authentication Controller Testing', () => {
     next = jest.fn();
   });
 
-  // it('handleLogin should return a JSON response with status 201 and access token', async () => {
-  //   const email = 'test@example.com';
-  //   const password = 'password';
-  //   const user = {
-  //     id: 1,
-  //     name: 'Test User',
-  //     email,
-  //     encryptedPassword: 'encryptedPassword',
-  //     Role: {
-  //       id: 1,
-  //       name: 'CUSTOMER',
-  //     },
-  //   };
+  it('handleLogin should return a JSON response with status 201 and access token', async () => {
+    const email = 'test@example.com';
+    const password = 'password';
+    const user = {
+      id: 1,
+      name: 'Test User',
+      email,
+      encryptedPassword: 'encryptedPassword',
+      Role: {
+        id: 1,
+        name: 'CUSTOMER',
+      },
+    };
 
-  //   const accessToken = 'access_token';
+    const accessToken = 'access_token';
 
-  //   userModelMock.findOne.mockResolvedValue(user);
-  //   bcryptMock.verify.mockReturnValue(true);
-  //   jwtMock.sign.mockReturnValue(accessToken);
+    userModelMock.findOne.mockResolvedValue(user);
+    bcryptMock.verify.mockReturnValue(true);
+    jwtMock.sign.mockReturnValue(accessToken);
 
-  //   req.body = { email, password };
+    req.body = { email, password };
 
-  //   await authenticationController.handleLogin(req, res, next);
+    await authenticationController.handleLogin(req, res, next);
 
-  //   expect(userModelMock.findOne).toHaveBeenCalledWith({
-  //     where: { email },
-  //     include: [{ model: roleModelMock, attributes: ['id', 'name'] }],
-  //   });
-  //   expect(bcryptMock.verify).toHaveBeenCalledWith(password, user.encryptedPassword);
-  //   expect(jwtMock.sign).toHaveBeenCalledWith({
-  //     id: user.id,
-  //     name: user.name,
-  //     email: user.email,
-  //     image: user.image,
-  //     role: {
-  //       id: user.Role.id,
-  //       name: user.Role.name,
-  //     },
-  //   }, expect.any(String));
-  //   expect(res.status).toHaveBeenCalledWith(201);
-  //   expect(res.json).toHaveBeenCalledWith({
-  //     accessToken,
-  //   });
-  // });
+    expect(userModelMock.findOne).toHaveBeenCalledWith({
+      where: { email },
+      include: [{ model: roleModelMock, attributes: ['id', 'name'] }],
+    });
+    expect(bcryptMock.verify).toHaveBeenCalledWith(password, user.encryptedPassword);
+    expect(jwtMock.sign).toHaveBeenCalledWith({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      image: user.image,
+      role: {
+        id: user.Role.id,
+        name: user.Role.name,
+      },
+    }, expect.any(String));
+    expect(res.status).toHaveBeenCalledWith(201);
+    expect(res.json).toHaveBeenCalledWith({
+      accessToken,
+    });
+  });
 
   it('handleRegister should return a JSON response with status 201 and access token', async () => {
     const name = 'Test User';
@@ -170,17 +170,17 @@ describe('Authentication Controller Testing', () => {
     expect(res.json).toHaveBeenCalledWith(user);
   });
 
-  // it('handleGetUser should return a JSON response with status 404 if user not found', async () => {
-  //   const userId = 1;
+  it('handleGetUser should return a JSON response with status 404 if user not found', async () => {
+    const userId = 1;
 
-  //   userModelMock.findByPk.mockResolvedValue(null);
+    userModelMock.findByPk.mockResolvedValue(null);
 
-  //   req.user = { id: userId };
+    req.user = { id: userId };
 
-  //   await authenticationController.handleGetUser(req, res);
+    await authenticationController.handleGetUser(req, res);
 
-  //   expect(userModelMock.findByPk).toHaveBeenCalledWith(userId);
-  //   expect(res.status).toHaveBeenCalledWith(404);
-  //   expect(res.json).toHaveBeenCalledWith(expect.any(RecordNotFoundError));
-  // });
+    expect(userModelMock.findByPk).toHaveBeenCalledWith(userId);
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith(expect.any(RecordNotFoundError));
+  });
 });
